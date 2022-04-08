@@ -10,6 +10,23 @@ export const getPosts = async (req, res) => {
   }
 };
 
+// QUERY -> /posts?page=1 -> = 1 (mostly used to search for a resource)
+// PARAMS -> /posts/123 -> 123 (used to locate a resource)
+
+export const getPostBySearch = async (req, res) => {
+  const { searchQuery, tags } = req.query;
+
+  try {
+    const title = new RegExp(searchQuery, "i");
+    const posts = await PostMessage.find({
+      $or: [{ title }, { tags: { $in: tags.split(",") } }],
+    });
+    res.json({ data: posts });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 export const createPost = async (req, res) => {
   const post = req.body;
   const newPostMessage = new PostMessage({

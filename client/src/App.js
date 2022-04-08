@@ -13,19 +13,21 @@ import Auth from './components/Auth/Auth'
 // import useStyles from './styles'
 
 const App = () => {
-
+const user = JSON.parse(localStorage.getItem('profile'))
   return (   
-     <Container maxWidth="lg">
+     <Container maxWidth="xl">
       <Router>
         <Navbar />
         <Routes>
           <Route path="/" element={<Navigate to="/posts" />} />
           <Route path="/posts" element={<Home />} />
-            {/* <Route path="/posts/search" element={<Home />} /> */}
+            <Route path="/posts/search" element={<Home />} />
               <Route
                 path="/auth"
                 element={<Auth/>}
               />
+          <Route path="auth" element={!user ?<Auth/> : <Navigate to= "/posts"/>}
+          />
           </Routes>
       </Router>
      </Container>
