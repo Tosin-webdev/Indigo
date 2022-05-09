@@ -1,6 +1,4 @@
 import express from "express";
-// import mongoose from "mongoose";
-// import cors from "cors";
 import connectDB from "./database/connection.js";
 import postRoutes from "./routes/posts.js";
 import dotenv from "dotenv";
