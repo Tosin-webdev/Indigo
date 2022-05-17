@@ -13,7 +13,7 @@ export const getPosts = async (req, res) => {
 // QUERY -> /posts?page=1 -> = 1 (mostly used to search for a resource)
 // PARAMS -> /posts/123 -> 123 (used to locate a resource)
 
-export const getPostBySearch = async (req, res) => {
+export const getPostsBySearch = async (req, res) => {
   const { searchQuery, tags } = req.query;
 
   try {
